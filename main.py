@@ -162,11 +162,11 @@ class Platform:
             ):
                 if self.breaks:
                     self.reset_platform()
-                    bin_y_speed = 5.6
+                    bin_y_speed = 10
                 elif self.bouncy:
-                    bin_y_speed = 7.5
+                    bin_y_speed = 17
                 else:
-                    bin_y_speed = 5.6
+                    bin_y_speed = 10
             if self.rocket is not None:
                 self.rocket.detect_player()
 
@@ -340,7 +340,7 @@ while running:
 
     # move down and jumping
     bin_y = bin_y + bin_y_speed
-    bin_y_speed = bin_y_speed - .09
+    bin_y_speed = bin_y_speed - .20
     if flying_by_rocket == True and bin_y_speed <= 0:
         flying_by_rocket = False
 
@@ -376,10 +376,10 @@ while running:
         # moving
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_LEFT]:
-            bin_x = bin_x - 3
+            bin_x = bin_x - 5.67
             bin_moving_right = False
         if pressed_keys[pygame.K_RIGHT]:
-            bin_x = bin_x + 3
+            bin_x = bin_x + 5.67
             bin_moving_right = True
 
         if flying_by_rocket:
