@@ -33,6 +33,7 @@ CURRENT_BIN_IMAGE = LEFT_BIN_IMAGE
 DEAD_SOUND = pygame.mixer.Sound("sounds/dead.mp3")
 JUMP_SOUND = pygame.mixer.Sound("sounds/jump.mp3")
 SHOOT_SOUND = pygame.mixer.Sound("sounds/shoot.mp3")
+JET_SOUND = pygame.mixer.Sound("sounds/jet.mp3")
 
 JUMP_SOUND.set_volume(0.25)
 SHOOT_SOUND.set_volume(0.5)
@@ -88,7 +89,7 @@ class Rocket:
 
     def draw(self):
         pygame.draw.rect(screen, "brown", (game_x_to_screen(self.x), game_y_to_screen(self.y), 15, 23))
-
+    
     def detect_player(self):
         global bin_y_speed, flying_by_rocket
         if (
@@ -99,7 +100,8 @@ class Rocket:
         ):
             bin_y_speed = 20
             flying_by_rocket = True
-
+            JET_SOUND.play()
+            
 class Platform:
     # types of platforms:
     # 0: normal
