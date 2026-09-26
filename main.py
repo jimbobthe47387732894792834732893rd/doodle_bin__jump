@@ -30,6 +30,13 @@ LOGO_IMAGE = pygame.image.load("images/logo.png")
 
 CURRENT_BIN_IMAGE = LEFT_BIN_IMAGE
 
+DEAD_SOUND = pygame.mixer.Sound("sounds/dead.mp3")
+JUMP_SOUND = pygame.mixer.Sound("sounds/jump.mp3")
+SHOOT_SOUND = pygame.mixer.Sound("sounds/shoot.mp3")
+
+JUMP_SOUND.set_volume(0.25)
+SHOOT_SOUND.set_volume(0.5)
+
 BIN_WIDTH = 50
 BIN_HEIGHT = 64
 PLATFORM_WIDTH = 60
@@ -170,6 +177,8 @@ class Platform:
                     bin_y_speed = 17
                 else:
                     bin_y_speed = 10
+
+                JUMP_SOUND.play()
             if self.rocket is not None:
                 self.rocket.detect_player()
 
@@ -177,6 +186,7 @@ class Bullet:
     def __init__(self, starting_x, starting_y):
         self.x = starting_x
         self.y = starting_y
+        SHOOT_SOUND.play()
 
     def draw(self):
         pygame.draw.circle(screen, "#93c47d", game_coordinate_to_screen(self.x, self.y), 5)
@@ -449,6 +459,7 @@ while running:
 
     # ui
     if not alive:
+        DEAD_SOUND.play()
         dead_ui()
 
     if not game_still_going:
